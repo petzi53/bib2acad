@@ -1,8 +1,8 @@
 #' Convert .bib Files to .md Files for the Hugo Academic Theme
 #'
-#' \code{bib2acad} takes a .bib file and covert it to a .md file for the
-#' publication folder of the Hugo Academic theme
-#' (\url{https://sourcethemes.com/academic/})
+#' \code{bib2acad} takes a .bib file and generates for each record a .md file
+#' suitable for the publication folder of the Hugo Academic theme
+#' (\url{https://sourcethemes.com/academic/}).
 #'
 #' @param bibfile A string in the format "path/to/bibfile": required
 #' @param copybib   Logical, optional, default = TRUE
@@ -16,6 +16,7 @@
 #' @importFrom pbapply startpb closepb
 #' @importFrom stringr str_replace_all str_squish
 #' @importFrom stringi stri_trans_general
+#' @importFrom utils menu
 #'
 ################################################################################
 
@@ -25,25 +26,56 @@ bib2acad <- function(bibfile = "",
                      abstract = TRUE,
                      overwrite = FALSE) {
 
+    ############################################################################
+    # check files and permissions
     msg1 <- "You must specify a .bib file as input for the conversion."
     msg2 <- paste0("Cannot find file '", bibfile,
                    "'. Check path and/or file name.")
+    msg3 <- "Aborted by user"
+
     if (bibfile == "") {return(message(msg1))}
     if (!file.exists(bibfile)) {return(message(msg2))}
     outfold <- "my-md-folder"
-    if (copybib) {bibfold <- "my-bib-folder"}
+    bibfold <- "my-bib-folder"
+
+
+    question1 <- paste0("The package will create a new folder '",
+                        outfold, "'. OK?")
+    question2 <- paste0("The package will create a new folder '",
+                        bibfold, "'. OK?")
+    question3 <- paste0("Overwrite files in '", outfold, "' and/or in '",
+                        bibfold, "'. OK?")
+
+    if (!dir.exists(file.path(outfold))) {
+        choice_outfold <- menu(c("Yes", "No"), title = question1)
+        if (choice_outfold == 2) {return(message(msg3))}
+    }
+
+
+    if ((copybib) &&  (!dir.exists(file.path(bibfold)))) {
+        choice_bibfold <- menu(c("Yes", "No"), title = question2)
+        if (choice_bibfold == 2) {return(message(msg3))}
+    }
+
+
+    if ((overwrite) && ((dir.exists(file.path(outfold))) ||
+                         (dir.exists(file.path(bibfold))))) {
+        choice_overwrite <- menu(c("Yes", "No"), title = question3)
+        if (choice_overwrite == 2) {return(message(msg3))}
+    }
+
 
     # create folders the brutal way; do not worry if they alreday exist
     dir.create("my-md-folder", showWarnings = FALSE)
     dir.create("my-bib-folder", showWarnings = FALSE)
 
-
+    ############################################################################
     # Import the bibtex file and convert it to a data.frame
     mypubs   <- RefManageR::ReadBib(bibfile, check = "warn", .Encoding = "UTF-8")
     mypubs <- as.data.frame(mypubs)
     mypubs$key <- rownames(mypubs)
 
-
+    ############################################################################
     # assign "categories" to the different types of publications
     mypubs   <- dplyr::mutate(mypubs,
             pubtype = dplyr::case_when(bibtype == "Article" ~ "2",
@@ -62,11 +94,13 @@ bib2acad <- function(bibfile = "",
                                        bibtype == "Misc" ~ "0",
                                        TRUE ~ "0")
                             )
+
+    ############################################################################
     # create a function which populates the md template based on the info
     # about a publication
 
     create_md <- function(x) {
-        # define a date and create filename_md by appending date and bibTex key
+        # define a date and create filename_md by appending date and bibtex key
         if (!is.na(x[["year"]])) {
             x[["date"]] <- paste0(x[["year"]], "-01-01")
         } else {
@@ -82,7 +116,7 @@ bib2acad <- function(bibfile = "",
             write("+++", fileConn)
 
             # title and date
-            # title has sometimes with older bibTex files special characters "{}"
+            # title has sometimes with older bibtex files special characters "{}"
             # escape " and \ (e.g. the "ampersand"\&) with funtion escapeStr
 
             write(paste0("title = \"", cleanStr(x[["title"]]), "\""),
@@ -221,7 +255,7 @@ bib2acad <- function(bibfile = "",
 
 
         }
-        # write bibTex Data into separate file
+        # write bibtex Data into separate file
         # these bib files can be stored under "static/files/citations"
         # then a button "cite" is generated automatically
         # in the academic framework
@@ -238,12 +272,15 @@ bib2acad <- function(bibfile = "",
         }
     }
 
+    ############################################################################
     # apply the "create_md" function over the publications list to generate
     # the different "md" files.
 
     pb <- pbapply::startpb(min = 0, max = nrow(mypubs))
     pbapply::pbapply(mypubs, FUN = function(x) create_md(x), MARGIN = 1)
     pbapply::closepb(pb)
+
+    return(message("Conversion finished!"))
 
 }
 

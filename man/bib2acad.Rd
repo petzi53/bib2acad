@@ -17,7 +17,7 @@ bib2acad(bibfile = "", copybib = TRUE, abstract = TRUE,
 \item{overwrite}{Logical, optional, default = FALSE}
 }
 \description{
-\code{bib2acad} takes a .bib file and covert it to a .md file for the
-publication folder of the Hugo Academic theme
-(\url{https://sourcethemes.com/academic/})
+\code{bib2acad} takes a .bib file and generates for each record a .md file
+suitable for the publication folder of the Hugo Academic theme
+(\url{https://sourcethemes.com/academic/}).
 }

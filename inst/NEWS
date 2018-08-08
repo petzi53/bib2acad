@@ -28,15 +28,24 @@ And constructed with the following guidelines:
 
 For more information on SemVer, please visit http://semver.org/.
 
+v0.1.2
+------
+
+* Added menu for asking user if folder creation and file overwrite permission is ok
+* Version prepared for release to CRAN
+  - change version number from 0.1.1.99001 to 0.1.2
+  - change email address to my private github email: petzi53@gmail.com
+  - change package name from bib2academic to bib2acad
+  - create a new repo without using packrat because of an issue (see https://github.com/rstudio/packrat/issues/486)
+
 v0.1.1
 ------
 
-* Removed dependencies "anytime" and "%>%" to make installation & downlad faster
-
+* Removed dependencies "anytime" and "%>%" to make installation & download faster
 
 
 v0.1.0
 ------
 
-* Initial Release, inspired by Lorenzo Busseti
+* Initial Release, inspired by Lorenzo Busetto
     https://lbusettspatialr.blogspot.com/2018/03/automatically-importing-publications.html
