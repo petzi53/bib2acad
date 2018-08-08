@@ -31,8 +31,8 @@
 #'   This generates two folders `my-md-folder` and `my-bib-folder` where the two
 #'   types of generated files will be put.
 #'
-#'  To learn more about `bib2acad` [read the vignette:](../doc/usage.html)
-#'
+#'  To learn more about `bib2acad`, see the 'usage' vignette with
+#'  \href{../doc/usage.html}{\code{vignette("usage", package = "bib2acad")}}.
 #'
 #'
 #'

@@ -36,6 +36,7 @@ v0.1.2
   - change version number from 0.1.1.99001 to 0.1.2
   - change email address to my private github email: petzi53@gmail.com
   - change package name from bib2academic to bib2acad
+  - change not working vignette link into browseVignettes
   - create a new repo without using packrat because of an issue (see https://github.com/rstudio/packrat/issues/486)
 
 v0.1.1

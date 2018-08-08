@@ -39,6 +39,7 @@ directory and call \code{bib2acad("<your-bibfilename>.bib")}
 This generates two folders \code{my-md-folder} and \code{my-bib-folder} where the two
 types of generated files will be put.
 
-To learn more about \code{bib2acad} \href{../doc/usage.html}{read the vignette:}
+To learn more about \code{bib2acad}, see the 'usage' vignette with
+\href{../doc/usage.html}{\code{vignette("usage", package = "bib2acad")}}.
 }
 
