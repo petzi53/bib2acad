@@ -4,6 +4,11 @@ bib2acad: Converting Bibtex Records to .md Files for the Hugo Academic Theme
 
 `bib2acad` takes a .bib file and generates for each bib record a .md file. The name of the .md file is generated from the year and entry field. It has the format `year-month-day_key.md`.
 
+## Installation:
+
++ download from CRAN repo with `install.packages("bib2acad")`
++ download from GitHub with `devtools::install_github("petzi53/bib2acad")`, downloading the vignette as well use `devtools::install_github("petzi53/bib2acad", build_vignettes = TRUE)`
+
 ## Requirements:
 
 + You have already installed a blogdown project with the Hugo Academic theme. If you do not know what this means read the [Blogdown book](https://bookdown.org/yihui/blogdown/). In the following text I assume that you are comfortable with the Hugo Academic theme and the blogdown environment.
