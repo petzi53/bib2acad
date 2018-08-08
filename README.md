@@ -7,7 +7,7 @@ bib2acad: Converting Bibtex Records to .md Files for the Hugo Academic Theme
 ## Installation:
 
 + download from CRAN repo with `install.packages("bib2acad")`
-+ download from GitHub with `devtools::install_github("petzi53/bib2acad")`, downloading the vignette as well use `devtools::install_github("petzi53/bib2acad", build_vignettes = TRUE)`
++ download from GitHub with `devtools::install_github("petzi53/bib2acad")`, downloading the vignette as well use `devtools::install_github("petzi53/bib2acad", build_vignettes = TRUE)`. If you get an error message that there is no package 'devtools' then you must isntall it with `install.packages("devtools")` before downloading the package from GitHub.
 
 ## Requirements:
 
