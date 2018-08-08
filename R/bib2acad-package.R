@@ -9,13 +9,14 @@
 #' @section Required parameters: The only function of this package is
 #'   `bib2acad()` The bib2acad function needs one parameter.
 #'
-#'   \strong{bibfile}: A string to the path of the .bib file ("path/to/bibfile")
+#'   \strong{bibfile}: A string to the path of the .bib file
+#'   ("path/to/bibfile")
 #'
 #' @section Optional parameters: The `bib2acad` function has three optional
 #'   parameters
 #'
-#'   \strong{copybib}: TRUE or FALSE, default = TRUE. Should .bib files gener
-#'   ated?
+#'   \strong{copybib}: TRUE or FALSE, default = TRUE. Should .bib files
+#'   generated?
 #'
 #'
 #'   \strong{abstract}: TRUE or FALSE, default = TRUE. Should abstracts also
