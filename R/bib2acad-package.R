@@ -7,11 +7,11 @@
 #'
 #'
 #' @section Required parameters: The only function of this package is
-#'   `bib2acad()`` The bib2acad function needs one parameter.
+#'   `bib2acad()` The bib2acad function needs one parameter.
 #'
 #'   \strong{bibfile}: A string to the path of the .bib file ("path/to/bibfile")
 #'
-#' @section Optional parameters: The bib2acad functions has three optional
+#' @section Optional parameters: The `bib2acad` function has three optional
 #'   parameters
 #'
 #'   \strong{copybib}: TRUE or FALSE, default = TRUE. Should .bib files gener
@@ -22,14 +22,14 @@
 #'   added to the .md files?
 #'
 #'   \strong{overwrite}: TRUE or FALSE, default = FALSE. Should .md files with
-#'   the same name overwritten? If .bib files are also generated, then this
+#'   the same name overwritten? If .bib files are also created, then this
 #'   parameter applies to .bib files as well.
 #'
 #' @section Easiest usage: Put your .bib file on the top level of your project
 #'   directory and call `bib2acad("<your-bibfilename>.bib")`
 #'
 #'   This generates two folders `my-md-folder` and `my-bib-folder` where the two
-#'   types of generated files will be put.
+#'   types of generated files will be generated.
 #'
 #'  To learn more about `bib2acad`, see the 'usage' vignette with
 #'  \href{../doc/usage.html}{\code{vignette("usage", package = "bib2acad")}}.
