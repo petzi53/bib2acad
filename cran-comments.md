@@ -1,3 +1,9 @@
+## Resubmission
+This is a resubmission. 
+
+I have changed the Authors@R field to a call to person()
+
+
 First submission
 
 ## Test environments
