@@ -1,4 +1,8 @@
 ## Resubmission
+This is my second resubmission.
+
+I have deleted in the description the (wrong) reference to a top level folder.
+
 This is a resubmission. 
 
 I have changed the Authors@R field to a call to person()
