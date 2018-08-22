@@ -29,8 +29,8 @@
 #' @section Easiest usage: Put your .bib file on the top level of your project
 #'   directory and call `bib2acad("<your-bibfilename>.bib")`
 #'
-#'   This generates two folders `my-md-folder` and `my-bib-folder` where the two
-#'   types of generated files will be generated.
+#'   This generates two folders `my-md-folder` and `my-bib-folder` into a
+#'   tempory directory where the two types of generated files will be generated.
 #'
 #'  To learn more about `bib2acad`, see the 'usage' vignette with
 #'  \href{../doc/usage.html}{\code{vignette("usage", package = "bib2acad")}}.

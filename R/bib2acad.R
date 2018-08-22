@@ -35,13 +35,15 @@ bib2acad <- function(bibfile = "",
 
     if (bibfile == "") {return(message(msg1))}
     if (!file.exists(bibfile)) {return(message(msg2))}
-    outfold <- "my-md-folder"
-    bibfold <- "my-bib-folder"
 
 
-    question1 <- paste0("The package will create a new folder '",
+    outfold <- paste0(tempdir(), "/my-md-folder")
+    bibfold <- paste0(tempdir(), "/my-bib-folder")
+
+
+    question1 <- paste0("The package will create a temporary new folder '",
                         outfold, "'. OK?")
-    question2 <- paste0("The package will create a new folder '",
+    question2 <- paste0("The package will create a temporary new folder '",
                         bibfold, "'. OK?")
     question3 <- paste0("Overwrite files in '", outfold, "' and/or in '",
                         bibfold, "'. OK?")
@@ -66,8 +68,8 @@ bib2acad <- function(bibfile = "",
 
 
     # create folders the brutal way; do not worry if they alreday exist
-    dir.create("my-md-folder", showWarnings = FALSE)
-    dir.create("my-bib-folder", showWarnings = FALSE)
+    dir.create(outfold, showWarnings = FALSE)
+    dir.create(bibfold, showWarnings = FALSE)
 
     ############################################################################
     # Import the bibtex file and convert it to a data.frame
@@ -280,6 +282,8 @@ bib2acad <- function(bibfile = "",
     pbapply::pbapply(mypubs, FUN = function(x) create_md(x), MARGIN = 1)
     pbapply::closepb(pb)
 
+    opendir(tempdir())
+
     return(message("Conversion finished!"))
 
 }
@@ -297,4 +301,11 @@ cleanStr <- function(str) {
     return(stringr::str_squish(str))
 }
 
+opendir <- function(dir = getwd()){
+    if (.Platform['OS.type'] == "windows"){
+        shell.exec(dir)
+    } else {
+        system(paste(Sys.getenv("R_BROWSER"), dir))
+    }
+}
 
