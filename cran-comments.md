@@ -1,6 +1,7 @@
 ## 3rd Resubmission
 
 The program writes now .md and .bib files into folders in tempdir()
+again checked with local OS X and win-builder
 
 ## Resubmission
 This is my second resubmission.
